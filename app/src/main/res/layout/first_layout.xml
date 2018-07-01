@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/profilePic"
+            android:layout_width="80dp"
+            android:layout_height="112dp"
+            android:layout_alignBottom="@+id/usernameTextView"
+            android:layout_toEndOf="@+id/editBtn"
+            android:background="@drawable/logo"
+            android:layout_centerInParent="true"
+
+            />
+
+        <TextView
+            android:id="@+id/usernameTextView"
+            android:layout_width="212dp"
+            android:layout_height="58dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="47dp"
+            android:layout_marginTop="233dp"
+            android:text="TextView"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/emailTextView"
+            android:layout_width="241dp"
+            android:layout_height="52dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="173dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/salaryTextView"
+            android:layout_width="244dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="121dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/addressTextView"
+            android:layout_width="243dp"
+            android:layout_height="41dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="72dp"
+            android:text="TextView" />
+
+        <Spinner
+            android:id="@+id/positionSpinner"
+            android:layout_width="238dp"
+            android:layout_height="26dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="18dp" />
+
+        <ImageButton
+            android:id="@+id/editBtn"
+            android:layout_width="56dp"
+            android:layout_height="58dp"
+            android:layout_above="@+id/emailTextView"
+            android:layout_toEndOf="@+id/emailTextView" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="364dp"
+            android:layout_height="172dp"
+            android:layout_above="@+id/profilePic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="7dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/background"
+            android:scaleType="fitStart" />
+
+        <View
+            android:id="@+id/divider11"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+
+            android:layout_below="@+id/emailTextView"
+            android:layout_marginTop="-173dp"
+            android:background="?android:attr/listDivider" />
+
+        <View
+            android:id="@+id/divider12"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+
+            android:layout_below="@+id/salaryTextView"
+            android:layout_marginTop="-121dp"
+            android:background="?android:attr/listDivider" />
+
+        <View
+            android:id="@+id/divider13"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+
+            android:layout_marginBottom="55dp"
+            android:background="?android:attr/listDivider" />
+
+        <FrameLayout
+            android:layout_width="367dp"
+            android:layout_height="155dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/editBtn"
+            android:layout_marginStart="17dp">
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="24dp"
+            android:text="Button" />
+
+    </RelativeLayout>
+</RelativeLayout>

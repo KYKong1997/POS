@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.kinvey.android.Client;
@@ -33,6 +34,7 @@ public class MainMenu extends AppCompatActivity
     Fragment fragment;
     DrawerLayout drawer;
     private TextView textView;
+    private Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,7 @@ public class MainMenu extends AppCompatActivity
        client=MainActivity.getKinveyClient();
 
        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-
+        btn=(Button)findViewById(R.id.button3);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -146,6 +148,11 @@ public class MainMenu extends AppCompatActivity
     }
     public void openDrawer(View v){
         drawer.openDrawer(Gravity.LEFT);
+    }
+
+    public void btn3Onclick(View v){
+        Intent intent=new Intent(this,PosActivity.class);
+        startActivity(intent);
     }
 
 

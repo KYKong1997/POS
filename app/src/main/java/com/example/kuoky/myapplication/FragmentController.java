@@ -2,10 +2,13 @@ package com.example.kuoky.myapplication;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -54,16 +58,16 @@ public class FragmentController extends Fragment implements AdapterView.OnItemCl
     private TextView salaryEditText;
     private TextView addressEditText;
     private Spinner positionSpinner;
-    DataStore<Book> dataStore;
 
 
-    private Button button;
+
+    private ImageButton button;
 
     private String[] positionChoice={"Staff","Cashier","Manager"};
 
     ProgressDialog progressDialog;
 
-    com.example.kuoky.myapplication.User userCreated=new com.example.kuoky.myapplication.User();
+    DataStore<Staff> staffDataStore;
     @Override
     public void onStart() {
         super.onStart();
@@ -71,7 +75,7 @@ public class FragmentController extends Fragment implements AdapterView.OnItemCl
         nameEditText=(TextView) getView().findViewById(R.id.usernameTextView);
 
 
-        salaryEditText=(TextView)getView().findViewById(R.id.salaryTextView);
+
         addressEditText=(TextView) getView().findViewById(R.id.addressTextView);
         positionSpinner=(Spinner)getView().findViewById(R.id.positionSpinner);
         //saveBtn=(Button)getView().findViewById(R.id.saveBtn);
@@ -80,8 +84,45 @@ public class FragmentController extends Fragment implements AdapterView.OnItemCl
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         positionSpinner.setAdapter(adapter);
         positionSpinner.setOnItemSelectedListener(this);
-        button=(Button)getView().findViewById(R.id.button);
+        button=(ImageButton) getView().findViewById(R.id.editBtn);
         button.setOnClickListener(this);
+
+        staffDataStore.sync(new KinveySyncCallback() {
+            @Override
+            public void onSuccess(KinveyPushResponse kinveyPushResponse, KinveyPullResponse kinveyPullResponse) {
+
+            }
+
+            @Override
+            public void onPullStarted() {
+
+            }
+
+            @Override
+            public void onPushStarted() {
+
+            }
+
+            @Override
+            public void onPullSuccess(KinveyPullResponse kinveyPullResponse) {
+
+            }
+
+            @Override
+            public void onPushSuccess(KinveyPushResponse kinveyPushResponse) {
+
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+
+            }
+        });
+
+        Query quuery=client.query().in("Username",new String[]{"LiangWei"});
+
+
+
 
 
 
@@ -107,8 +148,8 @@ public class FragmentController extends Fragment implements AdapterView.OnItemCl
         super.onCreate(savedInstanceState);
         client=((App)getActivity().getApplication()).getSharedClient();
         userClass=client.getActiveUser();
-        dataStore=DataStore.collection("Book",Book.class,StoreType.SYNC,client);
 
+        staffDataStore=DataStore.collection("Staff",Staff.class,StoreType.SYNC,client);
 
 
 
@@ -142,39 +183,8 @@ public class FragmentController extends Fragment implements AdapterView.OnItemCl
 
     @Override
     public void onClick(View view) {
-        showProgress("Finding");
-        dataStore.sync(new KinveySyncCallback() {
-            @Override
-            public void onSuccess(KinveyPushResponse kinveyPushResponse, KinveyPullResponse kinveyPullResponse) {
-                getData();
-            }
 
 
-            @Override
-            public void onPullStarted() {
-
-            }
-
-            @Override
-            public void onPushStarted() {
-
-            }
-
-            @Override
-            public void onPullSuccess(KinveyPullResponse kinveyPullResponse) {
-
-            }
-
-            @Override
-            public void onPushSuccess(KinveyPushResponse kinveyPushResponse) {
-
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-
-            }
-        });
     }
 
     private void showProgress(String message){
@@ -188,70 +198,9 @@ public class FragmentController extends Fragment implements AdapterView.OnItemCl
 
     private void getData() {
 
-        UserStore.convenience(client, new KinveyClientCallback<User>() {
-            @Override
-            public void onSuccess(User user) {
-                String a=user.get("Salary").toString();
-
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-
-            }
-        });
+        showProgress("Finding");
 
 
-        UserStore.retrieve(new String[]{"Salary","Address","email","IC_NO","Position"}, client, new KinveyClientCallback<User>() {
-            @Override
-            public void onSuccess(final User user) {
-                userClass = user;
-
-                userCreated.setPosition("Chasier");
-                userCreated.setId(user.getId());
-                userCreated.setSalary(5000);
-                userCreated.setAddress(user.get("Address").toString());
-                userCreated.setUsername(user.getUsername());
-                userCreated.setEmail(user.get("email").toString());
-
-                nameEditText.setText(user.getUsername());
-
-                emailText.setText(user.get("email").toString());
-                salaryEditText.setText(user.get("Salary").toString());
-                addressEditText.setText(userCreated.getAddress());
-                int pos = getIndex(positionSpinner, user.get("Position").toString());
-                positionSpinner.setSelection(pos);
-
-
-
-
-                AsyncUserGroup users = client.userGroup();
-
-                userCreated.set("_kmd",user.get("_kmd"));
-                userCreated.set("_acl",user.get("_acl"));
-
-                userClass.setUsername("Fuck");
-                userCreated.setIC_NO(user.get("IC_NO").toString());
-                client.setActiveUser(userClass);
-                userCreated.update(new KinveyClientCallback<com.example.kuoky.myapplication.User>() {
-                    @Override
-                    public void onSuccess(com.example.kuoky.myapplication.User o) {
-                        String c=o.toString();
-                    }
-
-                    @Override
-                    public void onFailure(Throwable throwable) {
-
-                    }
-                });
-
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-
-            }
-        });
 
 
 

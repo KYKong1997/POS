@@ -2,48 +2,28 @@ package com.example.kuoky.myapplication;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.media.Image;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextClock;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.kinvey.android.AsyncUserDiscovery;
-import com.kinvey.android.AsyncUserGroup;
+import com.example.kuoky.myapplication.model.Staff;
 import com.kinvey.android.Client;
-import com.kinvey.android.callback.KinveyListCallback;
 
-import com.kinvey.android.callback.KinveyUserCallback;
-import com.kinvey.android.callback.KinveyUserListCallback;
 import com.kinvey.android.model.User;
 import com.kinvey.android.store.DataStore;
-import com.kinvey.android.store.UserStore;
-import com.kinvey.android.sync.KinveyPushCallback;
 import com.kinvey.android.sync.KinveyPushResponse;
 import com.kinvey.android.sync.KinveySyncCallback;
 import com.kinvey.java.Query;
-import com.kinvey.java.core.KinveyClientCallback;
 
 import com.kinvey.java.model.KinveyPullResponse;
-import com.kinvey.java.model.UserLookup;
 import com.kinvey.java.store.StoreType;
-
-import java.io.IOException;
-import java.util.List;
 
 public class FragmentController extends Fragment implements AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, View.OnClickListener {
 

@@ -1,9 +1,14 @@
-package com.example.kuoky.myapplication;
+package com.example.kuoky.myapplication.model;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.google.api.client.json.GenericJson;
 import com.google.api.client.util.Key;
 
-public class Stock extends GenericJson {
+import java.io.Serializable;
+
+public class Stock extends GenericJson implements Serializable{
     @Key
     private String SupplierName;
 
@@ -20,7 +25,11 @@ public class Stock extends GenericJson {
     private String Description;
 
     @Key
-    private Integer Qty;
+    private Double Qty;
+
+
+
+
 
     public String getSupplierName() {
         return SupplierName;
@@ -57,11 +66,11 @@ public class Stock extends GenericJson {
         Description = description;
     }
 
-    public Integer getQty() {
+    public Double getQty() {
         return Qty;
     }
 
-    public void setQty(Integer qty) {
+    public void setQty(Double qty) {
         Qty = qty;
     }
 

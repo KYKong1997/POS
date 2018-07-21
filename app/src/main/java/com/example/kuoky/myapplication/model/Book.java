@@ -1,7 +1,6 @@
-package com.example.kuoky.myapplication;
+package com.example.kuoky.myapplication.model;
 
 import com.google.api.client.json.GenericJson;
-import com.google.api.client.util.DateTime;
 import com.google.api.client.util.Key;
 
 public class Book extends GenericJson {

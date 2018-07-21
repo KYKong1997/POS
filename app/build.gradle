@@ -5,7 +5,7 @@ android {
     defaultConfig {
         multiDexEnabled true
         applicationId "com.example.kuoky.myapplication"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"

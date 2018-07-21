@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentActivity">
+
+    <TableLayout
+        android:layout_width="395dp"
+        android:layout_height="157dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:stretchColumns="*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:id="@id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Amount(RM):"
+                android:textAlignment="viewEnd"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/totalAmtTextViewInPayment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="63dp">
+
+            <TextView
+                android:id="@+id/labelPay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pay Amount(RM):"
+                android:textAlignment="viewEnd"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/payAmtTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/labelChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change(RM):"
+                android:textAlignment="viewEnd"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/changeAmtTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/canceBtninPayment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel" />
+
+            <Button
+                android:id="@+id/confirmPayBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="confirmPayment"
+                android:text="Confirm" />
+
+        </TableRow>
+
+
+    </TableLayout>
+
+    <ListView
+        android:id="@+id/orderedItemListView"
+        android:layout_width="390dp"
+        android:layout_height="327dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="395dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintTop_toBottomOf="@+id/orderedItemListView"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/memberIDLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Member Card No:"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/memberCardEditText"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/memberNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Member Name:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/memberNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="18sp" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/searchMemberBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:onClick="searchMember"
+                android:text="Search" />
+
+        </TableRow>
+
+
+    </TableLayout>
+
+</android.support.constraint.ConstraintLayout>

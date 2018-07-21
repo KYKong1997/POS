@@ -1,13 +1,32 @@
-package com.example.kuoky.myapplication;
+package com.example.kuoky.myapplication.model;
 
 import com.google.api.client.json.GenericJson;
 import com.google.api.client.util.Key;
 
 public class Staff extends GenericJson{
 
-    @Key("Salary")
-    public int Salary;
+    @Key
+    public Integer Salary;
+    @Key
+    public String Username;
 
+    @Key
+    public String Position;
+
+    @Key
+    public String Address;
+
+    @Key
+    public String Email;
+
+    @Key
+    public String IC_NO;
+
+    @Key
+    public String Name;
+
+    public Staff() {
+    }
     public String getUsername() {
         return Username;
     }
@@ -16,41 +35,20 @@ public class Staff extends GenericJson{
         Username = username;
     }
 
-    @Key("Username")
-    public String Username;
-
-    @Key("Position")
-    public String Manager;
-
-    @Key("Address")
-    public String Address;
-
-    @Key("Email")
-    public String Email;
-
-    @Key("IC_NO")
-    public String IC_NO;
-
-    @Key("Name")
-    public String Name;
-
-    public Staff() {
-    }
-
-    public int getSalary() {
+    public Integer getSalary() {
         return Salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(Integer salary) {
         Salary = salary;
     }
 
-    public String getManager() {
-        return Manager;
+    public String getPosition() {
+        return Position;
     }
 
-    public void setManager(String manager) {
-        Manager = manager;
+    public void setPosition(String position) {
+        Position = position;
     }
 
     public String getAddress() {

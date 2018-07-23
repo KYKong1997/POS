@@ -75,7 +75,10 @@ public class MainMenu extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            Intent startMain = new Intent(Intent.ACTION_MAIN);
+            startMain.addCategory(Intent.CATEGORY_HOME);
+            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(startMain);
         }
     }
 
@@ -128,8 +131,7 @@ public class MainMenu extends AppCompatActivity
             UserStore.logout(client, new KinveyClientCallback<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(intent);
+                    finish();
                 }
 
                 @Override
@@ -139,8 +141,6 @@ public class MainMenu extends AppCompatActivity
             });
 
         }
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -155,6 +155,10 @@ public class MainMenu extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void staffBtnOnClick(View v) {
+        Intent intent = new Intent(this, StaffMenu.class);
+        startActivity(intent);
+    }
 
 
 

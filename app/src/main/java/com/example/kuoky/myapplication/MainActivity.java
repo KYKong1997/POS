@@ -53,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
         return mKinveyClient;
     }
 
+    public void onBackPressed() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
+    }
 
     public void signInClick(View v){
         try{
@@ -72,9 +78,12 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Throwable throwable) {
                     Toast.makeText(getApplicationContext(),"Login Failed",Toast.LENGTH_LONG).show();
-
                 }
             });
+
+            loadingBar.setVisibility(View.INVISIBLE);
+            signInBtn.setVisibility(View.VISIBLE);
+
         }catch (IOException ex){
 
         }

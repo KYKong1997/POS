@@ -30,7 +30,8 @@
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".PosActivity" />
         <activity android:name=".UpdateActivity" />
-        <activity android:name=".PaymentActivity"></activity>
+        <activity android:name=".PaymentActivity" />
+        <activity android:name=".CuztomizeStaff"></activity>
     </application>
 
 </manifest>

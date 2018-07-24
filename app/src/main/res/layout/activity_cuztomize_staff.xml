@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CuztomizeStaff">
+
+    <TableLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/nameLabelInCustomizeStaff"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Name:"
+                android:textAlignment="viewEnd"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/nameEditTextStaff"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/ICNOLabelInCustomizeStaff"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="IC No:"
+                android:textAlignment="viewEnd"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/icNoEditTextStaff"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/emailLabelInCustomizeStaff"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Email:"
+                android:textAlignment="viewEnd"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/emailEditTextStaff"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/salaryLabelInCustomizeStaff"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Salary"
+                android:textAlignment="viewEnd"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/salaryEditTextStaff"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="142dp">
+
+            <TextView
+                android:id="@+id/addressLabelInCustomizeStaff"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Address"
+                android:textAlignment="viewEnd"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/addressEditTextStaff"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:inputType="textMultiLine"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/positionLabelInCustomizeStaff"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Position"
+                android:textAlignment="viewEnd"
+                android:textSize="24sp" />
+
+            <Spinner
+                android:id="@+id/positionSpinner"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:entries="@array/position"
+                android:textSize="24sp" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/resetBtnStaff"
+                android:layout_width="0dp"
+                android:layout_span="1"
+                android:layout_weight="1"
+                android:text="Reset"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/updateBtnStaff"
+                android:layout_width="0dp"
+                android:layout_span="1"
+                android:layout_weight="1"
+                android:onClick="updateUser"
+                android:text="Update"
+                android:textSize="24sp" />
+        </TableRow>
+
+    </TableLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -22,8 +22,10 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kinvey.android.Client;
+import com.kinvey.android.model.User;
 import com.kinvey.android.store.UserStore;
 import com.kinvey.java.core.KinveyClientCallback;
 
@@ -152,6 +154,10 @@ public class MainMenu extends AppCompatActivity
 
     public void btn3Onclick(View v){
         Intent intent=new Intent(this,PosActivity.class);
+        startActivity(intent);
+    }
+    public void updateUserTesting(View v){
+        Intent intent=new Intent(this,CuztomizeStaff.class);
         startActivity(intent);
     }
 

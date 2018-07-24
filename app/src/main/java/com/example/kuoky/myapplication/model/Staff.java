@@ -6,24 +6,24 @@ import com.google.api.client.util.Key;
 public class Staff extends GenericJson{
 
     @Key
-    public Integer Salary;
+    private Integer Salary;
     @Key
-    public String Username;
+    private String Username;
 
     @Key
-    public String Position;
+    private String Position;
 
     @Key
-    public String Address;
+    private String Address;
 
     @Key
-    public String Email;
+    private String Email;
 
     @Key
-    public String IC_NO;
+    private String IC_NO;
 
     @Key
-    public String Name;
+    private String Name;
 
     public Staff() {
     }

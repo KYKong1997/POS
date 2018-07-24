@@ -156,10 +156,7 @@ public class MainMenu extends AppCompatActivity
         Intent intent=new Intent(this,PosActivity.class);
         startActivity(intent);
     }
-    public void updateUserTesting(View v){
-        Intent intent=new Intent(this,CuztomizeStaff.class);
-        startActivity(intent);
-    }
+
 
     public void staffBtnOnClick(View v) {
         Intent intent = new Intent(this, StaffMenu.class);

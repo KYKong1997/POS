@@ -30,9 +30,10 @@
         <activity android:name=".UpdateActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".StaffMenu" />
-        <activity android:name=".model.Inventory" />
-        <activity android:name=".model.memMgmt" />
-        <activity android:name=".model.AddStaff"></activity>
+        <activity android:name=".Inventory" />
+        <activity android:name=".memMgmt" />
+        <activity android:name=".AddStaff" />
+        <activity android:name=".CancellationReceipt"></activity>
     </application>
 
 </manifest>

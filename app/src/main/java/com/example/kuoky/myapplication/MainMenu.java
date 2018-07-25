@@ -162,7 +162,10 @@ public class MainMenu extends AppCompatActivity
         Intent intent = new Intent(this, StaffMenu.class);
         startActivity(intent);
     }
-
+    public void memBtnOnClick(View v) {
+        Intent intent = new Intent(this, memMgmt.class);
+        startActivity(intent);
+    }
 
 
 }

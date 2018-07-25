@@ -1,15 +1,14 @@
-package com.example.kuoky.myapplication.model;
+package com.example.kuoky.myapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.kuoky.myapplication.R;
+public class AddStaff extends AppCompatActivity {
 
-public class memMgmt extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mem_mgmt);
+        setContentView(R.layout.activity_add_staff);
     }
 }

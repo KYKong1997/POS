@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CancellationReceipt">
+    tools:context=".Cancellation">
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
         android:layout_marginLeft="196dp"
         android:layout_marginStart="196dp"
         android:layout_marginTop="164dp"
-        android:onClick="clickText"
+        android:onClick="confirmBtnOnClick"
         android:text="Confirm"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,6 +64,7 @@
         android:layout_marginLeft="48dp"
         android:layout_marginStart="48dp"
         android:text="Exit"
+        android:onClick="exitBtnOnClick"
         app:layout_constraintBaseline_toBaselineOf="@+id/confirm"
         app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

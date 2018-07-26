@@ -2,7 +2,6 @@ package com.example.kuoky.myapplication;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,11 +27,8 @@ import com.kinvey.java.model.KinveyPullResponse;
 import com.kinvey.java.model.KinveyReadResponse;
 import com.kinvey.java.store.StoreType;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class PosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     public ListView stockList;
@@ -268,6 +264,11 @@ public class PosActivity extends AppCompatActivity implements AdapterView.OnItem
         orderAdpter=new StockAdapter(orderStocks,PosActivity.this);
         orderListView.setAdapter(orderAdpter);
         orderAdpter.notifyDataSetChanged();
+    }
+
+    public void CancelBtnOnClick(View v){
+        Intent intent = new Intent(this, Cancellation.class);
+        startActivity(intent);
     }
 
 }

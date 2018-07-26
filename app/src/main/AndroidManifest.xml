@@ -33,7 +33,8 @@
         <activity android:name=".Inventory" />
         <activity android:name=".memMgmt" />
         <activity android:name=".AddStaff" />
-        <activity android:name=".CancellationReceipt"></activity>
+        <activity android:name=".CancellationActivity" />
+        <activity android:name=".Cancellation"></activity>
     </application>
 
 </manifest>

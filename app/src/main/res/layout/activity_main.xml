@@ -62,16 +62,17 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginStart="76dp"
         android:text="Forget Password?"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="63dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/signUpLabel"
         android:layout_width="124dp"
         android:layout_height="20dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:onClick="resetPassword"
@@ -97,14 +98,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageButton" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="signOut"
-        android:text="Button"
-        tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="6dp" />
 
 </android.support.constraint.ConstraintLayout>

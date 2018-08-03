@@ -30,22 +30,13 @@ public class CustomOnNavigationItemSelectedListener implements NavigationView.On
 
 
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_pos) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-            FragmentController fragmentController=new FragmentController();
-            FragmentManager manager=activity.getFragmentManager();
-            manager.beginTransaction().replace(R.id.drawer_layout,fragmentController).commit();
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-        else if(id==R.id.nav_logout){
+        } else if (id == R.id.nav_inventory) {
+            FragmentController fragmentController = new FragmentController();
+            FragmentManager manager = activity.getFragmentManager();
+            manager.beginTransaction().replace(R.id.drawer_layout, fragmentController).commit();
+        } else if(id==R.id.nav_logout){
             Client client=MainActivity.getKinveyClient();
             UserStore.logout(client, new KinveyClientCallback<Void>() {
                 @Override

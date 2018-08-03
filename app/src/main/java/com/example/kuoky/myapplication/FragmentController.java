@@ -51,20 +51,12 @@ public class FragmentController extends Fragment implements AdapterView.OnItemCl
     @Override
     public void onStart() {
         super.onStart();
-        emailText=(TextView)getView().findViewById(R.id.emailTextView);
-        nameEditText=(TextView) getView().findViewById(R.id.usernameTextView);
-
-
-
-        addressEditText=(TextView) getView().findViewById(R.id.addressTextView);
-        positionSpinner=(Spinner)getView().findViewById(R.id.positionSpinner);
         //saveBtn=(Button)getView().findViewById(R.id.saveBtn);
 
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,positionChoice);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         positionSpinner.setAdapter(adapter);
         positionSpinner.setOnItemSelectedListener(this);
-        button=(ImageButton) getView().findViewById(R.id.editBtn);
         button.setOnClickListener(this);
 
         staffDataStore.sync(new KinveySyncCallback() {
@@ -115,13 +107,6 @@ public class FragmentController extends Fragment implements AdapterView.OnItemCl
     }
 
     @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView=inflater.inflate(R.layout.first_layout,container,false);
-
-
-        return myView;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

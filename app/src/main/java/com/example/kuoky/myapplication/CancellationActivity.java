@@ -35,7 +35,7 @@ public class CancellationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cancellation_activity);
         Intent intent=getIntent();
-        text =(EditText) findViewById(R.id.editText2);
+        //text =(EditText) findViewById(R.id.editText2);
         invoiceId = intent.getStringExtra("editText");
         client=MainActivity.getKinveyClient();
         invoiceStore=DataStore.collection("Invoice",Invoice.class,StoreType.SYNC,client);
@@ -44,13 +44,7 @@ public class CancellationActivity extends AppCompatActivity {
         //push();
 
         //sync();
-       // delete();
-
-
-
-
-
-
+        //delete();
 
     }
     public void delete(){

@@ -1,10 +1,18 @@
 package com.example.kuoky.myapplication;
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -18,6 +26,7 @@ import com.example.kuoky.myapplication.model.Stock;
 import com.kinvey.android.Client;
 import com.kinvey.android.callback.KinveyReadCallback;
 import com.kinvey.android.store.DataStore;
+import com.kinvey.android.store.UserStore;
 import com.kinvey.android.sync.KinveyPullCallback;
 import com.kinvey.android.sync.KinveyPushCallback;
 import com.kinvey.android.sync.KinveyPushResponse;
@@ -30,7 +39,7 @@ import com.kinvey.java.store.StoreType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class PosActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
     public ListView stockList;
     private ListView orderListView;
     private TextView totalAmtTextView;
@@ -47,10 +56,16 @@ public class PosActivity extends AppCompatActivity implements AdapterView.OnItem
 
     private Stock returnStock=new Stock();
     private Button btnPay;
+
+    Fragment fragment;
+    DrawerLayout drawer;
+    private TextView textView;
+    private Button btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pos);
+        setContentView(R.layout.activity_pos_menu);
         stockList=(ListView)findViewById(R.id.stockListView);
         orderListView=(ListView)findViewById(R.id.orderListView);
         btnPay=(Button)findViewById(R.id.payBtn);
@@ -70,6 +85,17 @@ public class PosActivity extends AppCompatActivity implements AdapterView.OnItem
         });
         pull();
 
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        btn=(Button)findViewById(R.id.button3);
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer,  R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -269,6 +295,43 @@ public class PosActivity extends AppCompatActivity implements AdapterView.OnItem
     public void CancelBtnOnClick(View v){
         Intent intent = new Intent(this, Cancellation.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if(id == R.id.nav_home) {
+            Intent intent = new Intent(this, MainMenu.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_pos) {
+            Intent intent = new Intent(this, PosActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_inventory) {
+            Intent intent = new Intent(this, Inventory.class);
+            startActivity(intent);
+        } else if(id==R.id.nav_logout){
+            UserStore.logout(client, new KinveyClientCallback<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    finish();
+                }
+
+                @Override
+                public void onFailure(Throwable throwable) {
+
+                }
+            });
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+    public void openDrawer(View v){
+        drawer.openDrawer(Gravity.LEFT);
     }
 
 }

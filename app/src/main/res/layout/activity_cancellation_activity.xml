@@ -6,22 +6,4 @@
     android:layout_height="match_parent"
     tools:context=".CancellationActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Done"
-        tools:layout_editor_absoluteX="90dp"
-        tools:layout_editor_absoluteY="122dp" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="182dp" />
-
 </android.support.constraint.ConstraintLayout>

@@ -49,16 +49,6 @@ public class MainMenu extends AppCompatActivity
        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         btn=(Button)findViewById(R.id.button3);
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer,  R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -67,7 +57,6 @@ public class MainMenu extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
     }
 
@@ -112,24 +101,17 @@ public class MainMenu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-            FragmentController fragmentController=new FragmentController();
-            FragmentManager manager=getFragmentManager();
-            manager.beginTransaction().replace(R.id.drawer_layout,fragmentController).commit();
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if(id == R.id.nav_home) {
+            Intent intent = new Intent(this, MainMenu.class);
+            startActivity(intent);
         }
-        else if(id==R.id.nav_logout){
+        else if (id == R.id.nav_pos) {
+            Intent intent = new Intent(this, PosActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_inventory) {
+            Intent intent = new Intent(this, Inventory.class);
+            startActivity(intent);
+        } else if(id==R.id.nav_logout){
             UserStore.logout(client, new KinveyClientCallback<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -141,7 +123,6 @@ public class MainMenu extends AppCompatActivity
 
                 }
             });
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -157,7 +138,6 @@ public class MainMenu extends AppCompatActivity
         startActivity(intent);
     }
 
-
     public void staffBtnOnClick(View v) {
         Intent intent = new Intent(this, StaffMenu.class);
         startActivity(intent);
@@ -166,6 +146,5 @@ public class MainMenu extends AppCompatActivity
         Intent intent = new Intent(this, memMgmt.class);
         startActivity(intent);
     }
-
 
 }

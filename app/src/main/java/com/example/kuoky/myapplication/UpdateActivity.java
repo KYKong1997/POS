@@ -36,10 +36,6 @@ public class UpdateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update);
-        btn=(Button)findViewById(R.id.button);
-        pushBtn=(Button)findViewById(R.id.pushBtn);
-        signBtn=(Button)findViewById(R.id.signBtn);
         client=MainActivity.getKinveyClient();
         stockDataStore=DataStore.collection("Stock",Stock.class, StoreType.SYNC,client);
 

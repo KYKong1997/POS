@@ -62,7 +62,7 @@ public class PaymentActivity extends AppCompatActivity {
     private DataStore<Member> memberDataStore;
 
     private Member member;
-    private Staff staffLogIn;
+    private Staff staffLogIn=new Staff();
     private ProgressDialog progressDialog;
 
     private User user;
@@ -113,7 +113,12 @@ public class PaymentActivity extends AppCompatActivity {
         UserStore.retrieve(client, new KinveyUserCallback<User>() {
             @Override
             public void onSuccess(User user1) {
-                user=user1;
+                staffLogIn.setPosition(user1.get("Position").toString());
+                staffLogIn.setAddress(user1.get("Address").toString());
+                staffLogIn.setEmail(user1.get("Email").toString());
+                staffLogIn.setUsername(user1.getUsername());
+                staffLogIn.setSalary(Integer.valueOf(user1.get("Salary").toString()));
+
                 dismissProgress();
             }
 
@@ -143,12 +148,12 @@ public class PaymentActivity extends AppCompatActivity {
                 public void onSuccess(KinveyReadResponse<Member> kinveyReadResponse) {
                    member=kinveyReadResponse.getResult().get(0);
                     memberNameTextView.setText(member.getF_Name()+"");
-
+                    dismissProgress();
                 }
 
                 @Override
                 public void onFailure(Throwable throwable) {
-
+                    dismissProgress();
                 }
             });
         }
@@ -156,20 +161,7 @@ public class PaymentActivity extends AppCompatActivity {
             Toast.makeText(this,"Card Number cannot empty",Toast.LENGTH_SHORT).show();
         }
 
-        Query query=client.query().in("Username",new String[]{user.getUsername()});
 
-        staffStore.find(query, new KinveyReadCallback<Staff>() {
-            @Override
-            public void onSuccess(KinveyReadResponse<Staff> kinveyReadResponse) {
-                staffLogIn=kinveyReadResponse.getResult().get(0);
-                dismissProgress();
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-
-            }
-        });
 
     }
     private void showProgress(String message) {

@@ -146,5 +146,10 @@ public class MainMenu extends AppCompatActivity
         Intent intent = new Intent(this, memMgmt.class);
         startActivity(intent);
     }
+    public void inventoryBtn(View v){
+        Intent intent=new Intent(this,Inventory.class);
+        startActivity(intent);
+    }
+
 
 }

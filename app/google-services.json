@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1005730431977",
+    "firebase_url": "https://testing-5a7af.firebaseio.com",
+    "project_id": "testing-5a7af",
+    "storage_bucket": "testing-5a7af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005730431977:android:9adccb6f42b04269",
+        "android_client_info": {
+          "package_name": "com.example.kuoky.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005730431977-9h4r5n4egvmckbcc6p1j8t9h0cp7fmc1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCmLEizt3jKwFcMrYWfI-FnjcAN_IYFHM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

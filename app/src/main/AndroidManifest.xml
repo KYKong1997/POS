@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kuoky.myapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission android:name="com.example.kuoky.myapplication.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.example.kuoky.myapplication.permission.C2D_MESSAGE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -34,7 +42,18 @@
         <activity android:name=".memMgmt" />
         <activity android:name=".AddStaff" />
         <activity android:name=".CancellationActivity" />
-        <activity android:name=".Cancellation"></activity>
+        <activity android:name=".Cancellation" />
+        <activity android:name=".InventoryDetails"></activity>
+
+        <receiver
+            android:name="com.example.kuoky.myapplication.GCMReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.example.kuoky.myapplication" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".GCMService" />
     </application>
 
 </manifest>

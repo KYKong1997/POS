@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(user!=null){
+            mKinveyClient.push(GCMService.class).initialize(getApplication());
+
             Intent intent=new Intent(getApplicationContext(),MainMenu.class);
             startActivity(intent);
         }

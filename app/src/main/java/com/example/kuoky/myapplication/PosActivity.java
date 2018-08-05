@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -63,9 +64,10 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
     private Button btn;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pos_menu);
+
+        setContentView(R.layout.activity_pos);
         stockList=(ListView)findViewById(R.id.stockListView);
         orderListView=(ListView)findViewById(R.id.orderListView);
         btnPay=(Button)findViewById(R.id.payBtn);
@@ -88,14 +90,16 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
         //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         btn=(Button)findViewById(R.id.button3);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        /*drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer,  R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);*/
+
+
     }
 
     @Override

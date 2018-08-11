@@ -10,6 +10,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
+import com.example.kuoky.myapplication.Drawer.Common;
 import com.kinvey.android.Client;
 import com.kinvey.android.store.UserStore;
 import com.kinvey.java.core.KinveyClientCallback;
@@ -37,7 +38,7 @@ public class CustomOnNavigationItemSelectedListener implements NavigationView.On
             FragmentManager manager = activity.getFragmentManager();
             manager.beginTransaction().replace(R.id.drawer_layout, fragmentController).commit();
         } else if(id==R.id.nav_logout){
-            Client client=MainActivity.getKinveyClient();
+            Client client= Common.client;
             UserStore.logout(client, new KinveyClientCallback<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {

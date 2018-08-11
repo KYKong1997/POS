@@ -1,9 +1,11 @@
 package com.example.kuoky.myapplication;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,9 +23,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kuoky.myapplication.Drawer.Common;
+import com.example.kuoky.myapplication.Drawer.DrawerUtil;
 import com.kinvey.android.Client;
 import com.kinvey.android.model.User;
 import com.kinvey.android.store.UserStore;
@@ -37,29 +42,34 @@ public class MainMenu extends AppCompatActivity
     DrawerLayout drawer;
     private TextView textView;
     private Button btn;
+    private Toolbar toolbarMainMenu;
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+        toolbarMainMenu=(Toolbar)findViewById(R.id.toolbarMainMenu);
+        toolbarMainMenu.setTitle("Main Menu");
+       client= Common.client;
 
-       client=MainActivity.getKinveyClient();
+
+        DrawerUtil.getDrawer(this,toolbarMainMenu);
 
        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        btn=(Button)findViewById(R.id.button3);
+        btn=(Button)findViewById(R.id.memberMgmtBtn);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer,  R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        if(!Common.user.get("Position").equals("Manager")){
+            btn.setVisibility(View.INVISIBLE);
+        }
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
     }
+    public void startDrawer(){
+        DrawerUtil.getDrawer(this ,toolbarMainMenu);
 
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -149,6 +159,18 @@ public class MainMenu extends AppCompatActivity
     public void inventoryBtn(View v){
         Intent intent=new Intent(this,Inventory.class);
         startActivity(intent);
+    }
+    private void showProgress(String message) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+        }
+        progressDialog.setMessage(message);
+        progressDialog.show();
+    }
+    private void dismissProgress() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
     }
 
 

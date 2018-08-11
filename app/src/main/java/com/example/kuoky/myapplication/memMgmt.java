@@ -1,123 +1,103 @@
 package com.example.kuoky.myapplication;
 
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import com.example.kuoky.myapplication.model.Member;
-import com.kinvey.android.Client;
-import com.kinvey.android.callback.KinveyReadCallback;
-import com.kinvey.android.store.DataStore;
-import com.kinvey.android.sync.KinveyPullCallback;
-import com.kinvey.android.sync.KinveyPushResponse;
-import com.kinvey.android.sync.KinveySyncCallback;
-import com.kinvey.java.model.KinveyPullResponse;
-import com.kinvey.java.model.KinveyReadResponse;
-import com.kinvey.java.store.StoreType;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.kuoky.myapplication.Drawer.Common;
+
+import org.json.JSONObject;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class memMgmt extends AppCompatActivity  {
 
-    private ListView memberList;
-    private Client client;
-    DataStore<Member> memStore;
-    private MemberAdapter adapter;
 
+    private EditText titleEditText;
+    private EditText contentEditText;
+    private Button sendBtn;
+
+    public static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent=new Intent(this,MainMenu.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mem_mgmt);
-        memberList=(ListView)findViewById(R.id.listView);
-        client=MainActivity.getKinveyClient();
-        memStore=DataStore.collection("Members",Member.class, StoreType.SYNC,client);
-        final SwipeRefreshLayout pullToRefresh=findViewById(R.id.pullToRefresh);
-        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                sync();
-                pullToRefresh.setRefreshing(false);
-            }
-        });
-        pull();
+        Intent intent=getIntent();
+        titleEditText=(EditText)findViewById(R.id.titleNotificationeditText);
+        contentEditText=(EditText)findViewById(R.id.bodyEditText);
+        sendBtn=(Button)findViewById(R.id.sendBtn);
 
-    }
-    private void sync(){
-        memStore.sync(new KinveySyncCallback() {
-            @Override
-            public void onSuccess(KinveyPushResponse kinveyPushResponse, final KinveyPullResponse kinveyPullResponse) {
-                getData();
-            }
-
-            @Override
-            public void onPullStarted() {
-
-            }
-
-            @Override
-            public void onPushStarted() {
-
-            }
-
-            @Override
-            public void onPullSuccess(KinveyPullResponse kinveyPullResponse) {
-
-            }
-
-            @Override
-            public void onPushSuccess(KinveyPushResponse kinveyPushResponse) {
-
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-
-            }
-        });
-    }
-    private void printTable(List<Member> m){
-        if(m==null){
-            m=new ArrayList<Member>();
+        if(intent.getStringExtra("title")!=null){
+            titleEditText.setText(intent.getStringExtra("title"));
+            contentEditText.setText(intent.getStringExtra("message"));
         }
-        adapter=new MemberAdapter(m,memMgmt.this);
+        if(!Common.user.get("Position").toString().equals("Manager")){
+            titleEditText.setEnabled(false);
+            contentEditText.setEnabled(false);
+            sendBtn.setVisibility(View.INVISIBLE);
+        }
 
-      memberList.setAdapter(adapter);
+
+
+
 
     }
-    private void getData(){
-        memStore.find(new KinveyReadCallback<Member>() {
-            @Override
-            public void onSuccess(KinveyReadResponse<Member> kinveyReadResponse) {
-                printTable(kinveyReadResponse.getResult());
-            }
+    public void send(View v){
 
-            @Override
-            public void onFailure(Throwable throwable) {
+        sendNotification();
 
-            }
-        });
     }
-    private void pull(){
 
-        memStore.pull(new KinveyPullCallback() {
+    private void sendNotification() {
+        new AsyncTask<Void, Void, Void>() {
             @Override
-            public void onSuccess(KinveyPullResponse kinveyPullResponse) {
+            protected Void doInBackground(Void... params) {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    JSONObject json = new JSONObject();
+                    JSONObject dataJson = new JSONObject();
+                    dataJson.put("body", contentEditText.getText().toString());
+                    dataJson.put("title", titleEditText.getText().toString());
+                    json.put("notification", dataJson);
+                    json.put("to", "/topics/news");
+                    RequestBody body = RequestBody.create(JSON, json.toString());
+                    Request request = new Request.Builder()
+                            .header("Authorization", "key=" + "AIzaSyA-tExSAhBZoMZ9qIXESz_qG6f-xSYnldM")
+                            .url("https://fcm.googleapis.com/fcm/send")
+                            .post(body)
+                            .build();
+                    okhttp3.Response response = client.newCall(request).execute();
+                    String finalResponse = response.body().string();
+                } catch (Exception ex) {
 
-                getData();
+                }
+                return null;
             }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-
-            }
-        });
+        }.execute();
     }
+
+
 
 
 }

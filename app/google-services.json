@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "1005730431977",
-    "firebase_url": "https://testing-5a7af.firebaseio.com",
-    "project_id": "testing-5a7af",
-    "storage_bucket": "testing-5a7af.appspot.com"
+    "project_number": "102997531323",
+    "firebase_url": "https://seam-73750.firebaseio.com",
+    "project_id": "seam-73750",
+    "storage_bucket": "seam-73750.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1005730431977:android:9adccb6f42b04269",
+        "mobilesdk_app_id": "1:102997531323:android:a21ab979a6b02bf2",
         "android_client_info": {
           "package_name": "com.example.kuoky.myapplication"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1005730431977-9h4r5n4egvmckbcc6p1j8t9h0cp7fmc1.apps.googleusercontent.com",
+          "client_id": "102997531323-dbeidcunfr2jg6k4n8dagdk4lsre3ucs.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBCmLEizt3jKwFcMrYWfI-FnjcAN_IYFHM"
+          "current_key": "AIzaSyDNZUiPjUZBvBpCt3IhKVVeTYbhs1g3T7I"
         }
       ],
       "services": {

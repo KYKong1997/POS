@@ -12,6 +12,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kuoky.myapplication.Drawer.Common;
+import com.example.kuoky.myapplication.Drawer.DrawerUtil;
 import com.example.kuoky.myapplication.model.Stock;
 import com.kinvey.android.Client;
 import com.kinvey.android.callback.KinveyReadCallback;
@@ -57,35 +60,48 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
 
     private Stock returnStock=new Stock();
     private Button btnPay;
+    private Toolbar posToolbar;
 
     Fragment fragment;
     DrawerLayout drawer;
     private TextView textView;
     private Button btn;
+    SwipeRefreshLayout pullToRefresh;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_pos);
+        posToolbar=(Toolbar)findViewById(R.id.toolbarPos);
+
+        posToolbar.setTitle("POS");
+
+
+        DrawerUtil.getDrawer(this,posToolbar);
+
         stockList=(ListView)findViewById(R.id.stockListView);
         orderListView=(ListView)findViewById(R.id.orderListView);
         btnPay=(Button)findViewById(R.id.payBtn);
         totalAmtTextView=(TextView)findViewById(R.id.totalAmtTextView);
         totalPay=(EditText)findViewById(R.id.payAmtEditText);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        client=MainActivity.getKinveyClient();
-        showProgress("Loading");
-        stockStore=DataStore.collection("Stock",Stock.class, StoreType.SYNC,client);
-        final SwipeRefreshLayout pullToRefresh=findViewById(R.id.pullToRefresh);
+        client= Common.client;
+        orderListView.setOnItemClickListener(PosActivity.this);
+        stockStore=DataStore.collection("Stock",Stock.class, StoreType.CACHE,client);
+        getData();
+
+        pullToRefresh=findViewById(R.id.pullToRefresh);
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 sync();
+
                 pullToRefresh.setRefreshing(false);
             }
         });
-        pull();
+
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         btn=(Button)findViewById(R.id.button3);
@@ -105,7 +121,7 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
     @Override
     protected void onResume() {
         super.onResume();
-        pull();
+        getData();
     }
 
     private void sync(){
@@ -200,18 +216,31 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         int a=position;
-        Stock stockfind=adapter.getItem(position);
 
-        if(stockfind.getQty().intValue()>0){
-            orderStocks.add(stockfind);
-            stockfind.setQty(new Double(stockfind.getQty().intValue()-1));
-            totalAmt+=stockfind.getPrice().doubleValue();
-            totalAmtTextView.setText(""+totalAmt);
-            updateOrderAdapter(orderStocks);
+
+        if(parent.getAdapter()==adapter){
+            Stock stockfind=adapter.getItem(position);
+            if(stockfind.getQty().intValue()>0){
+
+                orderStocks.add(stockfind);
+                stockfind.setQty(new Double(stockfind.getQty().intValue()-1));
+                totalAmt+=stockfind.getPrice().doubleValue();
+                totalAmtTextView.setText(String.format("%.2f", totalAmt));
+                updateOrderAdapter(orderStocks);
+            }
+            else {
+                Toast.makeText(this,"Quantity not enough",Toast.LENGTH_SHORT).show();
+            }
         }
         else {
-            Toast.makeText(this,"Quantity not enough",Toast.LENGTH_SHORT).show();
+            Stock stockfind=orderAdpter.getItem(position);
+            orderStocks.remove(a);
+            totalAmt-=stockfind.getPrice().doubleValue();
+            totalAmtTextView.setText(String.format("%.2f", totalAmt));
+            orderAdpter.notifyDataSetChanged();
         }
+
+
 
 /*        Intent i=new Intent(this,UpdateActivity.class);
         i.putExtra("id",stockfind.get("_id").toString());

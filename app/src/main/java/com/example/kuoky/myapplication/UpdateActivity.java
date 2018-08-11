@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.kuoky.myapplication.Drawer.Common;
 import com.example.kuoky.myapplication.model.Stock;
 import com.kinvey.android.Client;
 import com.kinvey.android.callback.KinveyReadCallback;
@@ -36,7 +37,7 @@ public class UpdateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        client=MainActivity.getKinveyClient();
+        client= Common.client;
         stockDataStore=DataStore.collection("Stock",Stock.class, StoreType.SYNC,client);
 
 

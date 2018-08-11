@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.kuoky.myapplication.Drawer.Common;
 import com.kinvey.android.Client;
 import com.kinvey.android.callback.KinveyUserManagementCallback;
 import com.kinvey.android.store.UserStore;
@@ -21,7 +22,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
-        client=MainActivity.getKinveyClient();
+        client= Common.client;
         usernameText=(EditText)findViewById(R.id.userNameText2);
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);

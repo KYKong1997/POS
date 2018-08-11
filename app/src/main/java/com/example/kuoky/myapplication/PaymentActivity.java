@@ -4,12 +4,16 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.example.kuoky.myapplication.Drawer.Common;
+import com.example.kuoky.myapplication.Drawer.DrawerUtil;
 import com.example.kuoky.myapplication.model.Invoice;
 import com.example.kuoky.myapplication.model.Member;
 import com.example.kuoky.myapplication.model.Staff;
@@ -60,6 +64,7 @@ public class PaymentActivity extends AppCompatActivity {
     private DataStore<Stock> stockStore;
     private DataStore<Staff> staffStore;
     private DataStore<Member> memberDataStore;
+    private Toolbar toolbarPayment;
 
     private Member member;
     private Staff staffLogIn=new Staff();
@@ -97,13 +102,16 @@ public class PaymentActivity extends AppCompatActivity {
         totalTextView=(TextView)findViewById(R.id.totalAmtTextViewInPayment);
         payTextView=(TextView)findViewById(R.id.payAmtTextView);
         changeTextView=(TextView)findViewById(R.id.changeAmtTextView);
+        toolbarPayment=(Toolbar)findViewById(R.id.toolbarPayment);
+        toolbarPayment.setTitle("Payment");
+        DrawerUtil.getDrawer(this,toolbarPayment);
 
         totalTextView.setText(totalAmt+"");
         payTextView.setText(payAmt+"");
         changeTextView.setText(String.format("%.2f",(payAmt-totalAmt)));
         updateOrderAdapter(orderListItem);
 
-        client=MainActivity.getKinveyClient();
+        client= Common.client;
         stockStore=DataStore.collection("Stock",Stock.class, StoreType.SYNC,client);
         invoiceStore=DataStore.collection("Invoice",Invoice.class,StoreType.SYNC,client);
         memberDataStore=DataStore.collection("Members",Member.class,StoreType.SYNC,client);
@@ -115,7 +123,7 @@ public class PaymentActivity extends AppCompatActivity {
             public void onSuccess(User user1) {
                 staffLogIn.setPosition(user1.get("Position").toString());
                 staffLogIn.setAddress(user1.get("Address").toString());
-                staffLogIn.setEmail(user1.get("Email").toString());
+                staffLogIn.setEmail(user1.get("email").toString());
                 staffLogIn.setUsername(user1.getUsername());
                 staffLogIn.setSalary(Integer.valueOf(user1.get("Salary").toString()));
 

@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.kuoky.myapplication.Drawer.Common;
 import com.example.kuoky.myapplication.model.Staff;
 import com.kinvey.android.Client;
 import com.kinvey.android.store.DataStore;
@@ -36,7 +37,7 @@ public class StaffMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_menu);
-        client=MainActivity.getKinveyClient();
+        client= Common.client;
         final ImageButton imgBtn = (ImageButton) findViewById(R.id.imageButton3);
         final TextView textView = (TextView) findViewById(R.id.textView3);
         final SearchView searchView = (SearchView) findViewById(R.id.searchView);

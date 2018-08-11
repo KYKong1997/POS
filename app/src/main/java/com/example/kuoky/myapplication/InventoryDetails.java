@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.kuoky.myapplication.Drawer.Common;
 import com.example.kuoky.myapplication.model.Stock;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -52,7 +53,7 @@ public class InventoryDetails extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory_details);
 
-        client=MainActivity.getKinveyClient();
+        client= Common.client;
 
         stockDataStore=DataStore.collection("Stock",Stock.class, StoreType.SYNC,client);
         showProgress("Loading");
@@ -218,6 +219,7 @@ public class InventoryDetails extends AppCompatActivity implements AdapterView.O
                     sync();
                     dismissProgress();
                     Toast.makeText(getApplicationContext(),"Inventory Changes Saved",Toast.LENGTH_SHORT).show();
+                    onBackPressed();
                 }
 
                 @Override

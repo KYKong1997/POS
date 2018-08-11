@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.kuoky.myapplication.Drawer.Common;
 import com.kinvey.android.Client;
 import com.kinvey.android.callback.KinveyDeleteCallback;
 import com.kinvey.android.callback.KinveyReadCallback;
@@ -37,7 +38,7 @@ public class CancellationActivity extends AppCompatActivity {
         Intent intent=getIntent();
         //text =(EditText) findViewById(R.id.editText2);
         invoiceId = intent.getStringExtra("editText");
-        client=MainActivity.getKinveyClient();
+        client= Common.client;
         invoiceStore=DataStore.collection("Invoice",Invoice.class,StoreType.SYNC,client);
         getData();
         //pull();

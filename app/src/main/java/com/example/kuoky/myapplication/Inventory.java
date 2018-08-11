@@ -11,6 +11,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.kuoky.myapplication.Drawer.Common;
+import com.example.kuoky.myapplication.Drawer.DrawerUtil;
 import com.example.kuoky.myapplication.R;
 import com.example.kuoky.myapplication.model.Stock;
 import com.kinvey.android.Client;
@@ -45,17 +48,20 @@ public class Inventory extends AppCompatActivity implements NavigationView.OnNav
     private Button btn;
     private ListView inventoryListView;
     private ProgressDialog progressDialog;
+    private Toolbar inventoryToolbar;
 
     private StockAdapter inventoryAdapter;
     ArrayList<Stock> inventory;
     DataStore<Stock> stockStore;
+
+    SwipeRefreshLayout pullToRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
 
-        client=MainActivity.getKinveyClient();
+        client= Common.client;
         //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         btn=(Button)findViewById(R.id.button3);
 
@@ -67,11 +73,18 @@ public class Inventory extends AppCompatActivity implements NavigationView.OnNav
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);*/
+        inventoryToolbar=(Toolbar)findViewById(R.id.toolbarInventory);
+        inventoryToolbar.setTitle("Inventory");
+
+
+        DrawerUtil.getDrawer(this,inventoryToolbar);
 
        inventoryListView=(ListView)findViewById(R.id.inventoryListView);
-       showProgress("Loading");
-        stockStore=DataStore.collection("Stock",Stock.class, StoreType.SYNC,client);
-        final SwipeRefreshLayout pullToRefresh=findViewById(R.id.pullToRefreshInventory);
+
+        stockStore=DataStore.collection("Stock",Stock.class, StoreType.CACHE,client);
+        getData();
+        pullToRefresh=findViewById(R.id.pullToRefreshInventory);
+
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -227,7 +240,7 @@ public class Inventory extends AppCompatActivity implements NavigationView.OnNav
     @Override
     protected void onResume() {
         super.onResume();
-        sync();
-        pull();
+        getData();
+
     }
 }

@@ -130,6 +130,7 @@ public class MainMenu extends AppCompatActivity
 
                 @Override
                 public void onFailure(Throwable throwable) {
+                    Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
 
                 }
             });

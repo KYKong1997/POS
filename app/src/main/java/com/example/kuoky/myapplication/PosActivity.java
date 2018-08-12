@@ -171,6 +171,7 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
 
             @Override
             public void onFailure(Throwable throwable) {
+                Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
 
             }
         });
@@ -208,6 +209,7 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
 
             @Override
             public void onFailure(Throwable throwable) {
+                dismissProgress();
 
             }
         });
@@ -354,6 +356,7 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
 
                 @Override
                 public void onFailure(Throwable throwable) {
+                    Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
 
                 }
             });

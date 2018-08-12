@@ -22,9 +22,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    packagingOptions {
-        pickFirst 'okhttp3/internal/publicsuffix/publicsuffixes.gz'
-    }
+
 
 
 }

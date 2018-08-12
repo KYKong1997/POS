@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kuoky.myapplication.Drawer.Common;
 import com.example.kuoky.myapplication.Drawer.DrawerUtil;
@@ -106,6 +107,8 @@ public class Inventory extends AppCompatActivity implements NavigationView.OnNav
 
             @Override
             public void onFailure(Throwable throwable) {
+                Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
+                dismissProgress();
 
             }
         });
@@ -157,6 +160,7 @@ public class Inventory extends AppCompatActivity implements NavigationView.OnNav
 
             @Override
             public void onFailure(Throwable throwable) {
+                Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
 
             }
         });

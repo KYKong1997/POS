@@ -105,7 +105,10 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Throwable throwable) {
-                    Toast.makeText(getApplicationContext(),"Login Failed",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
+                    loadingBar.setVisibility(View.INVISIBLE);
+                    signInBtn.setVisibility(View.VISIBLE);
+
                 }
             });
 

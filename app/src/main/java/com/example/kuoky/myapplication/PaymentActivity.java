@@ -117,24 +117,13 @@ public class PaymentActivity extends AppCompatActivity {
         memberDataStore=DataStore.collection("Members",Member.class,StoreType.SYNC,client);
         staffStore=DataStore.collection("Staff",Staff.class,StoreType.SYNC,client);
         user=client.getActiveUser();
-        showProgress("Loading");
-        UserStore.retrieve(client, new KinveyUserCallback<User>() {
-            @Override
-            public void onSuccess(User user1) {
-                staffLogIn.setPosition(user1.get("Position").toString());
-                staffLogIn.setAddress(user1.get("Address").toString());
-                staffLogIn.setEmail(user1.get("email").toString());
-                staffLogIn.setUsername(user1.getUsername());
-                staffLogIn.setSalary(Integer.valueOf(user1.get("Salary").toString()));
+        
 
-                dismissProgress();
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-
-            }
-        });
+        staffLogIn.setPosition(Common.user.get("Position").toString());
+        staffLogIn.setAddress(Common.user.get("Address").toString());
+        staffLogIn.setEmail(Common.user.get("email").toString());
+        staffLogIn.setUsername(Common.user.getUsername());
+        staffLogIn.setSalary(Integer.valueOf(Common.user.get("Salary").toString()));
         pullMember();
     }
     private void updateOrderAdapter(ArrayList<Stock> orderStocks){
@@ -194,6 +183,7 @@ public class PaymentActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable throwable) {
+                Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
 
             }
         });
@@ -217,6 +207,7 @@ public class PaymentActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable throwable) {
+                Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
 
             }
         });
@@ -256,6 +247,7 @@ public class PaymentActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable throwable) {
+                Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
 
             }
         });
@@ -297,6 +289,7 @@ public class PaymentActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable throwable) {
+                Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
 
             }
         });

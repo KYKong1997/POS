@@ -148,6 +148,8 @@ public class InventoryDetails extends AppCompatActivity implements AdapterView.O
 
             @Override
             public void onFailure(Throwable throwable) {
+                Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
+                dismissProgress();
 
             }
         });
@@ -184,6 +186,7 @@ public class InventoryDetails extends AppCompatActivity implements AdapterView.O
 
             @Override
             public void onFailure(Throwable throwable) {
+                Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
 
             }
         });
@@ -224,6 +227,8 @@ public class InventoryDetails extends AppCompatActivity implements AdapterView.O
 
                 @Override
                 public void onFailure(Throwable throwable) {
+                    Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
+                    dismissProgress();
 
                 }
             });
@@ -239,6 +244,8 @@ public class InventoryDetails extends AppCompatActivity implements AdapterView.O
 
             @Override
             public void onFailure(Throwable throwable) {
+                Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
+
 
             }
         });

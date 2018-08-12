@@ -30,7 +30,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     public void ResetPassword(View v){
         progressBar.setVisibility(View.VISIBLE);
-        UserStore.resetPassword("kuokyong@live.com.my", client, new KinveyUserManagementCallback() {
+        UserStore.resetPassword(usernameText.getText().toString(), client, new KinveyUserManagementCallback() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(getApplicationContext(),"Reset password email is sent",Toast.LENGTH_LONG).show();
@@ -39,7 +39,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable throwable) {
-                Toast.makeText(getApplicationContext(),"Reset password Failed",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),throwable.getMessage(),Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }

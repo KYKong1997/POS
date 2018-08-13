@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +23,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-
             </intent-filter>
         </activity>
         <activity
@@ -40,15 +37,11 @@
         <activity android:name=".PosActivity" />
         <activity android:name=".UpdateActivity" />
         <activity android:name=".PaymentActivity" />
-        <activity android:name=".StaffMenu" />
         <activity android:name=".Inventory" />
         <activity
             android:name=".memMgmt"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".AddStaff" />
-        <activity android:name=".CancellationActivity" />
-        <activity android:name=".Cancellation" />
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".InventoryDetails" />
 
         <service android:name=".Drawer.MyFirebaseMessagingService">
@@ -62,7 +55,7 @@
             </intent-filter>
         </service>
 
-
+        <activity android:name=".paymentRecord"></activity>
     </application>
 
 </manifest>

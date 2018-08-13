@@ -39,6 +39,7 @@ import com.kinvey.java.store.StoreType;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -117,7 +118,7 @@ public class PaymentActivity extends AppCompatActivity {
         memberDataStore=DataStore.collection("Members",Member.class,StoreType.SYNC,client);
         staffStore=DataStore.collection("Staff",Staff.class,StoreType.SYNC,client);
         user=client.getActiveUser();
-        
+
 
         staffLogIn.setPosition(Common.user.get("Position").toString());
         staffLogIn.setAddress(Common.user.get("Address").toString());
@@ -255,6 +256,7 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void updateKinvey() {
         Invoice invoice=new Invoice();
+
         invoice.setDate(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
         invoice.setTotal_Amount(totalAmt);
         invoice.setStaff(staffLogIn);

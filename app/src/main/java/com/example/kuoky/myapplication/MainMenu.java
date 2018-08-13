@@ -150,8 +150,7 @@ public class MainMenu extends AppCompatActivity
     }
 
     public void staffBtnOnClick(View v) {
-        Intent intent = new Intent(this, StaffMenu.class);
-        startActivity(intent);
+
     }
     public void memBtnOnClick(View v) {
         Intent intent = new Intent(this, memMgmt.class);
@@ -172,6 +171,10 @@ public class MainMenu extends AppCompatActivity
         if (progressDialog != null) {
             progressDialog.dismiss();
         }
+    }
+    public void recordOnClick(View v){
+        Intent intent=new Intent(this,paymentRecord.class);
+        startActivity(intent);
     }
 
 

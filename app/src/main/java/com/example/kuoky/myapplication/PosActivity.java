@@ -90,6 +90,7 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
         client= Common.client;
         orderListView.setOnItemClickListener(PosActivity.this);
         stockStore=DataStore.collection("Stock",Stock.class, StoreType.CACHE,client);
+        showProgress("Loading");
         getData();
 
         pullToRefresh=findViewById(R.id.pullToRefresh);
@@ -166,6 +167,7 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
             public void onSuccess(KinveyReadResponse<Stock> kinveyReadResponse) {
 
                 updateStockAdapter(kinveyReadResponse.getResult());
+                dismissProgress();
 
             }
 
@@ -304,11 +306,17 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
             intent.putExtra("orderItem",orderStocks);
             intent.putExtra("totalAmount",totalAmt);
             intent.putExtra("payAmount",payAmount);
-            if(payAmount-totalAmt>=0){
+            if(payAmount-totalAmt>=0||orderAdpter.getCount()!=0){
                 startActivity(intent);
             }
             else {
-                Toast.makeText(this,"No enough Money",Toast.LENGTH_SHORT).show();
+                if(payAmount-totalAmt<=0){
+                    Toast.makeText(this,"No enough Money",Toast.LENGTH_SHORT).show();
+
+                }
+                else{
+                    Toast.makeText(this,"Please select an item",Toast.LENGTH_SHORT).show();
+                }
             }
 
         }catch (NumberFormatException ex){
@@ -328,8 +336,7 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
     }
 
     public void CancelBtnOnClick(View v){
-        Intent intent = new Intent(this, Cancellation.class);
-        startActivity(intent);
+        onBackPressed();
     }
 
     @Override

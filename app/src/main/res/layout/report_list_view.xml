@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/staffTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Staff :"
+                android:textAlignment="viewEnd"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/staffhandleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+
+                android:textSize="18sp"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/memberTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Member :"
+
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/memberhandleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+
+                android:textSize="18sp"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/itemTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Items :"
+                android:textAlignment="viewEnd"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/itemhandleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+
+                android:textSize="18sp"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date :"
+                android:textAlignment="viewEnd"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/datehandleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+
+                android:textSize="18sp"
+                />
+        </TableRow>
+    </TableLayout>
+</android.support.constraint.ConstraintLayout>

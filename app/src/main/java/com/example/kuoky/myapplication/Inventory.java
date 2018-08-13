@@ -83,6 +83,7 @@ public class Inventory extends AppCompatActivity implements NavigationView.OnNav
        inventoryListView=(ListView)findViewById(R.id.inventoryListView);
 
         stockStore=DataStore.collection("Stock",Stock.class, StoreType.CACHE,client);
+        showProgress("Loading");
         getData();
         pullToRefresh=findViewById(R.id.pullToRefreshInventory);
 
@@ -119,6 +120,7 @@ public class Inventory extends AppCompatActivity implements NavigationView.OnNav
             @Override
             public void onSuccess(KinveyPushResponse kinveyPushResponse, KinveyPullResponse kinveyPullResponse) {
                 getData();
+                dismissProgress();
 
             }
 
@@ -155,6 +157,7 @@ public class Inventory extends AppCompatActivity implements NavigationView.OnNav
             public void onSuccess(KinveyReadResponse<Stock> kinveyReadResponse) {
 
                 updateStockAdapter(kinveyReadResponse.getResult());
+                dismissProgress();
 
             }
 

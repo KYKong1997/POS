@@ -36,7 +36,7 @@ public class paymentRecord extends AppCompatActivity {
         setContentView(R.layout.activity_payment_record);
         client= Common.client;
         paymentListView=(ListView)findViewById(R.id.paymentListView);
-        invoiceDataStore=DataStore.collection("Invoice",Invoice.class, StoreType.SYNC,client);
+        invoiceDataStore=DataStore.collection("Invoice",Invoice.class, StoreType.CACHE,client);
         showProgress("Loading");
         sync();
         if(invoices==null){

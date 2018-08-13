@@ -306,11 +306,12 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
             intent.putExtra("orderItem",orderStocks);
             intent.putExtra("totalAmount",totalAmt);
             intent.putExtra("payAmount",payAmount);
-            if(payAmount-totalAmt>=0||orderAdpter.getCount()!=0){
+
+            if(payAmount-totalAmt>=0&&orderStocks.size()!=0){
                 startActivity(intent);
             }
             else {
-                if(payAmount-totalAmt<=0){
+                if(orderStocks.size()!=0){
                     Toast.makeText(this,"No enough Money",Toast.LENGTH_SHORT).show();
 
                 }

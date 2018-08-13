@@ -59,7 +59,10 @@ public class InvoiceReportAdapter extends BaseAdapter {
         TextView dateView=(TextView)view.findViewById(R.id.datehandleTextView);
 
         staffHandle.setText(invoices.get(position).getStaff().getUsername());
-        memberHandle.setText(invoices.get(position).getMember().getL_Name()+" "+invoices.get(position).getMember().getF_Name());
+        if(invoices.get(position).getMember()!=null){
+            memberHandle.setText(invoices.get(position).getMember().getL_Name()+" "+invoices.get(position).getMember().getF_Name());
+        }
+
         dateView.setText(invoices.get(position).getDate());
         ArrayList<Stock> stocks=invoices.get(position).getStocks();
 

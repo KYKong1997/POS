@@ -11,4 +11,6 @@ desktop to mobile platform.
 ## What's new
 * Added in Kinvey technology
 * Migrated to Android Platform
-* Added new features such as stock management. 
+* Added new features such as inventory management. 
+* Added in real-time updates.
+* Added online database.
